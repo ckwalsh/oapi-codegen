@@ -1,0 +1,30 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "strict",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/strict",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "strict_test",
+    srcs = ["strict_test.go"],
+    embed = [":strict"],
+    deps = [
+        "//internal/test/servers/strict/chi",
+        "//internal/test/servers/strict/client",
+        "//internal/test/servers/strict/echo",
+        "//internal/test/servers/strict/echo5",
+        "//internal/test/servers/strict/gin",
+        "//internal/test/servers/strict/iris",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_go_chi_chi_v5//:chi",
+        "@com_github_kataras_iris_v12//:iris",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_labstack_echo_v5//:echo",
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_testutil//:testutil",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

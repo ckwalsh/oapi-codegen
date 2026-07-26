@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "defaultbehaviour",
+    srcs = ["types.gen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/nullable/defaultbehaviour",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "defaultbehaviour_test",
+    srcs = ["defaultbehaviour_test.go"],
+    embed = [":defaultbehaviour"],
+    deps = ["@com_github_stretchr_testify//require"],
+)

@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "stdhttp-go-tool_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/stdhttp-go-tool",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/minimal-server/stdhttp-go-tool/api"],
+)
+
+go_binary(
+    name = "stdhttp-go-tool",
+    embed = [":stdhttp-go-tool_lib"],
+    visibility = ["//visibility:public"],
+)

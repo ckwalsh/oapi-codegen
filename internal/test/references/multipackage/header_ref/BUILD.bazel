@@ -1,0 +1,19 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "header_ref",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/header_ref",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "header_ref_test",
+    srcs = ["issue_test.go"],
+    embed = [":header_ref"],
+    deps = [
+        "//internal/test/references/multipackage/header_ref/gen/api",
+        "//internal/test/references/multipackage/header_ref/gen/common",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

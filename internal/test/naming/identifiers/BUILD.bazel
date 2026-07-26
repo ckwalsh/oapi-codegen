@@ -1,0 +1,24 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "identifiers",
+    srcs = [
+        "doc.go",
+        "identifiers.gen.go",
+        "identifiers_schemas.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/naming/identifiers",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_runtime//types",
+    ],
+)
+
+go_test(
+    name = "identifiers_test",
+    srcs = ["identifiers_test.go"],
+    embed = [":identifiers"],
+)

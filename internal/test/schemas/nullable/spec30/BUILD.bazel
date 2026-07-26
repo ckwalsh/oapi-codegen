@@ -1,0 +1,8 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "spec30",
+    srcs = ["types.gen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/nullable/spec30",
+    visibility = ["//:__subpackages__"],
+)

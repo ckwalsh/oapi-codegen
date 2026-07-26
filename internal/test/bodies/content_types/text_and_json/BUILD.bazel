@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "text_and_json",
+    srcs = [
+        "doc.go",
+        "text_and_json.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/bodies/content_types/text_and_json",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "text_and_json_test",
+    srcs = ["text_and_json_test.go"],
+    embed = [":text_and_json"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

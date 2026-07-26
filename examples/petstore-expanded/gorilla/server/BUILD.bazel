@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "server",
+    srcs = [
+        "server.go",
+        "setup.go",
+        "store.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/gorilla/server",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//examples/petstore-expanded/gorilla/api",
+        "@com_github_gorilla_mux//:mux",
+        "@com_github_oapi_codegen_nethttp_middleware//:nethttp-middleware",
+    ],
+)

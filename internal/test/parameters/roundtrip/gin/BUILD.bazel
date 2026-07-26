@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "gin",
+    srcs = ["server.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/roundtrip/gin",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/parameters/roundtrip/gin/gen",
+        "@com_github_gin_gonic_gin//:gin",
+    ],
+)

@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "webhook",
+    srcs = [
+        "doc.go",
+        "doorbadge.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/webhook",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_runtime//types",
+    ],
+)

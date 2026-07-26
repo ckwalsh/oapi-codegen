@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "chi_lib",
+    srcs = ["petstore.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/chi",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/petstore-expanded/chi/server"],
+)
+
+go_binary(
+    name = "chi",
+    embed = [":chi_lib"],
+    visibility = ["//visibility:public"],
+)

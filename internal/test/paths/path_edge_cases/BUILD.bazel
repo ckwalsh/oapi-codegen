@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "path_edge_cases",
+    srcs = [
+        "doc.go",
+        "path_edge_cases.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/paths/path_edge_cases",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)
+
+go_test(
+    name = "path_edge_cases_test",
+    srcs = ["path_edge_cases_test.go"],
+    embed = [":path_edge_cases"],
+    deps = [
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//mock",
+        "@com_github_stretchr_testify//require",
+    ],
+)

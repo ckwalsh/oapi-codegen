@@ -1,0 +1,23 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "echo",
+    srcs = [
+        "doc.go",
+        "middleware.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/middleware/echo",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_labstack_echo_v4//:echo"],
+)
+
+go_test(
+    name = "echo_test",
+    srcs = ["issue518_test.go"],
+    embed = [":echo"],
+    deps = [
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

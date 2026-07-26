@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "response_cast",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/response_cast",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "response_cast_test",
+    srcs = ["issue_test.go"],
+    deps = [
+        "//internal/test/references/multipackage/response_cast/gen/spec_base",
+        "//internal/test/references/multipackage/response_cast/gen/spec_other",
+    ],
+)

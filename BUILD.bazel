@@ -1,0 +1,38 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+load("@gazelle//:def.bzl", "DEFAULT_LANGUAGES", "gazelle", "gazelle_binary")
+
+package(default_visibility = ["//:__subpackages__"])
+
+bzl_library(
+    name = "def",
+    srcs = ["def.bzl"],
+    visibility = ["//visibility:public"],
+    deps = ["@rules_go//go:def"],
+)
+
+alias(
+    name = "go",
+    actual = "@rules_go//go",
+)
+
+gazelle(
+    name = "gazelle",
+    gazelle = ":gazelle_bin",
+)
+
+gazelle_binary(
+    name = "gazelle_bin",
+    languages = DEFAULT_LANGUAGES + [
+        "@bazel_skylib_gazelle_plugin//bzl",
+    ],
+)
+
+alias(
+    name = "oapi-codegen",
+    actual = "//cmd/oapi-codegen:oapi-codegen",
+)
+
+alias(
+    name = "ckwalsh-oapi-codegen",
+    actual = "//cmd/oapi-codegen:oapi-codegen",
+)

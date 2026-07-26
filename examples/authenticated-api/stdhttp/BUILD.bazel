@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "stdhttp_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/authenticated-api/stdhttp",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//examples/authenticated-api/stdhttp/api",
+        "//examples/authenticated-api/stdhttp/server",
+    ],
+)
+
+go_binary(
+    name = "stdhttp",
+    embed = [":stdhttp_lib"],
+    visibility = ["//visibility:public"],
+)

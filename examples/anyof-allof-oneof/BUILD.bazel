@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "anyof-allof-oneof",
+    srcs = [
+        "anyofallofoneof.gen.go",
+        "generate.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/anyof-allof-oneof",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)

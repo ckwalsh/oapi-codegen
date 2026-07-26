@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "type-mapping",
+    srcs = [
+        "customdate.go",
+        "generate.go",
+        "typemapping.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/output-options/type-mapping",
+    visibility = ["//visibility:public"],
+)

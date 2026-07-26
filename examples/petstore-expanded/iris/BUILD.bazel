@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "iris_lib",
+    srcs = ["petstore.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/iris",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/petstore-expanded/iris/server"],
+)
+
+go_binary(
+    name = "iris",
+    embed = [":iris_lib"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "api",
+    srcs = [
+        "generate.go",
+        "impl.go",
+        "ping.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/gorillamux/api",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_gorilla_mux//:mux"],
+)

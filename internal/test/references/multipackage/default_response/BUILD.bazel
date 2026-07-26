@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "default_response",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/default_response",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "default_response_test",
+    srcs = ["issue_test.go"],
+    embed = [":default_response"],
+    deps = [
+        "//internal/test/references/multipackage/default_response/gen/api",
+        "//internal/test/references/multipackage/default_response/gen/common",
+    ],
+)

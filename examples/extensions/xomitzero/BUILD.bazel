@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "xomitzero",
+    srcs = [
+        "generate.go",
+        "types.gen.go",
+        "types.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/extensions/xomitzero",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "xomitzero_test",
+    srcs = ["types_test.go"],
+    embed = [":xomitzero"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

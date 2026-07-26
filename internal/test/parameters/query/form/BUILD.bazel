@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "form",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/query/form",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "form_test",
+    srcs = ["query_form_test.go"],
+    embed = [":form"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)

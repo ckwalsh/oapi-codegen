@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "content",
+    srcs = [
+        "content.gen.go",
+        "doc.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/bodies/responses/content",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "content_test",
+    srcs = ["content_test.go"],
+    embed = [":content"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

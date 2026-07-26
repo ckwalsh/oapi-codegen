@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "gin_lib",
+    srcs = ["petstore.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/gin",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/petstore-expanded/gin/server"],
+)
+
+go_binary(
+    name = "gin",
+    embed = [":gin_lib"],
+    visibility = ["//visibility:public"],
+)

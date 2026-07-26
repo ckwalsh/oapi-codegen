@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "fiberv3_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/fiberv3",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//examples/minimal-server/fiberv3/api",
+        "@com_github_gofiber_fiber_v3//:fiber",
+    ],
+)
+
+go_binary(
+    name = "fiberv3",
+    embed = [":fiberv3_lib"],
+    visibility = ["//visibility:public"],
+)

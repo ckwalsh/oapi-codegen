@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "allof_merge_extensions",
+    srcs = [
+        "allof_merge_extensions.gen.go",
+        "doc.go",
+        "overlays.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/overlays/allof_merge_extensions",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "allof_merge_extensions_test",
+    srcs = ["overlays_test.go"],
+    embed = [":allof_merge_extensions"],
+)

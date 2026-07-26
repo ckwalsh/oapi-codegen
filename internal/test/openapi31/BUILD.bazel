@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "openapi31",
+    srcs = [
+        "doc.go",
+        "openapi31.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/openapi31",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//types"],
+)
+
+go_test(
+    name = "openapi31_test",
+    srcs = ["openapi31_test.go"],
+    data = [":openapi31.gen.go"],
+    embed = [":openapi31"],
+    deps = [
+        "@com_github_oapi_codegen_runtime//types",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)
+
+exports_files(["openapi31.gen.go"])

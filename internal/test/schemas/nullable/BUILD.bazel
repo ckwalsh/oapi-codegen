@@ -1,0 +1,29 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "nullable",
+    srcs = [
+        "doc.go",
+        "nullable.gen.go",
+        "nullable_schemas.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/nullable",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_go_chi_chi_v5//:chi",
+        "@com_github_oapi_codegen_nullable//:nullable",
+    ],
+)
+
+go_test(
+    name = "nullable_test",
+    srcs = ["nullable_test.go"],
+    embed = [":nullable"],
+    deps = [
+        "//internal/test/schemas/nullable/spec30",
+        "//internal/test/schemas/nullable/spec31",
+        "@com_github_oapi_codegen_nullable//:nullable",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

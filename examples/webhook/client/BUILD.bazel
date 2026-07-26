@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "client_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/webhook/client",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//examples/webhook",
+        "@com_github_google_uuid//:uuid",
+    ],
+)
+
+go_binary(
+    name = "client",
+    embed = [":client_lib"],
+    visibility = ["//visibility:public"],
+)

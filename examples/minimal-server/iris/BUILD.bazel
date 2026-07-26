@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "iris_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/iris",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//examples/minimal-server/iris/api",
+        "@com_github_kataras_iris_v12//:iris",
+    ],
+)
+
+go_binary(
+    name = "iris",
+    embed = [":iris_lib"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,3 @@
+import %workspace%/bazel/preset.bazelrc
+
+build:release --compilation_mode=opt

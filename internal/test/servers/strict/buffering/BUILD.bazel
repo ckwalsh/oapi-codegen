@@ -1,0 +1,23 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "buffering",
+    srcs = [
+        "doc.go",
+        "serversstrictbuffering.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/strict/buffering",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)
+
+go_test(
+    name = "buffering_test",
+    srcs = ["issue1963_test.go"],
+    embed = [":buffering"],
+    deps = [
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "spec_base",
+    srcs = ["issue.gen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/external/removed_ref/gen/spec_base",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/external/removed_ref/gen/spec_ext",
+        "@com_github_go_chi_chi_v5//:chi",
+    ],
+)

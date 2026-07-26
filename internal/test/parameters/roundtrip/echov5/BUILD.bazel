@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "echov5",
+    srcs = ["server.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/roundtrip/echov5",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/parameters/roundtrip/echov5/gen",
+        "@com_github_labstack_echo_v5//:echo",
+    ],
+)

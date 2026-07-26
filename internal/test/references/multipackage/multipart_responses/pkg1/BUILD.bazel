@@ -1,0 +1,16 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "pkg1",
+    srcs = [
+        "doc.go",
+        "pkg1.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/multipart_responses/pkg1",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/multipackage/multipart_responses/pkg2",
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_gin_gonic_gin//:gin",
+    ],
+)

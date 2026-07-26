@@ -1,0 +1,23 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "parent_child",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/parent_child",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "parent_child_test",
+    srcs = ["issue_test.go"],
+    data = [":parent.api.yaml"],
+    embed = [":parent_child"],
+    embedsrcs = ["child.api.yaml"],
+    deps = [
+        "//pkg/codegen",
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_stretchr_testify//require",
+    ],
+)
+
+exports_files(["parent.api.yaml"])

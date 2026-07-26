@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "deprecated",
+    srcs = [
+        "deprecated.gen.go",
+        "doc.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/deprecated",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)

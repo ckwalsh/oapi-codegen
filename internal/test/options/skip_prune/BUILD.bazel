@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "skip_prune",
+    srcs = [
+        "default_prune.gen.go",
+        "doc.go",
+        "skip_prune.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/skip_prune",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "skip_prune_test",
+    srcs = ["skip_prune_test.go"],
+    embed = [":skip_prune"],
+)

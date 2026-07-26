@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "api",
+    srcs = [
+        "generate.go",
+        "petstore-server.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/stdhttp/api",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)

@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "echo-v5_lib",
+    srcs = ["petstore.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/echo-v5",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/petstore-expanded/echo-v5/server"],
+)
+
+go_binary(
+    name = "echo-v5",
+    embed = [":echo-v5_lib"],
+    visibility = ["//visibility:public"],
+)

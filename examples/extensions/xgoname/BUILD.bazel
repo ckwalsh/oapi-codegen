@@ -1,0 +1,11 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "xgoname",
+    srcs = [
+        "gen.go",
+        "generate.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/extensions/xgoname",
+    visibility = ["//visibility:public"],
+)

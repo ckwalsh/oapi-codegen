@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "routeorder",
+    srcs = [
+        "doc.go",
+        "routeorder.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/routeorder",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)
+
+go_test(
+    name = "routeorder_test",
+    srcs = ["routeorder_test.go"],
+    embed = [":routeorder"],
+    deps = [
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_gofiber_fiber_v2//middleware/adaptor",
+        "@com_github_oapi_codegen_testutil//:testutil",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

@@ -1,0 +1,23 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "to_camel_case_with_initialisms",
+    srcs = [
+        "doc.go",
+        "name_normalizer.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/name_normalizer/to_camel_case_with_initialisms",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_gorilla_mux//:mux",
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_runtime//types",
+    ],
+)
+
+go_test(
+    name = "to_camel_case_with_initialisms_test",
+    srcs = ["name_normalizer_test.go"],
+    embed = [":to_camel_case_with_initialisms"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

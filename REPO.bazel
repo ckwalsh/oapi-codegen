@@ -1,0 +1,7 @@
+"""
+oapi-codegen
+"""
+
+ignore_directories([
+    ".git",
+])

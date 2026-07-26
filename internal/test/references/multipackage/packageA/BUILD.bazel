@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "packageA",
+    srcs = [
+        "doc.go",
+        "externalref.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/packageA",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/multipackage/packageB",
+        "@com_github_getkin_kin_openapi//openapi3",
+    ],
+)

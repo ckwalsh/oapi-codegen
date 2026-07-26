@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "chi_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/chi",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//examples/minimal-server/chi/api",
+        "@com_github_go_chi_chi_v5//:chi",
+    ],
+)
+
+go_binary(
+    name = "chi",
+    embed = [":chi_lib"],
+    visibility = ["//visibility:public"],
+)

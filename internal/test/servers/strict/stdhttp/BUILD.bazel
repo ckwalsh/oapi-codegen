@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "stdhttp",
+    srcs = [
+        "server.gen.go",
+        "server.go",
+        "types.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/strict/stdhttp",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)
+
+go_test(
+    name = "stdhttp_test",
+    srcs = ["std_strict_test.go"],
+    embed = [":stdhttp"],
+    deps = [
+        "//internal/test/servers/strict/client",
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_testutil//:testutil",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

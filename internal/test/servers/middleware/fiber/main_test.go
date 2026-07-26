@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
-	"path/filepath"
-	"runtime"
 	"strings"
 	"testing"
 
@@ -79,11 +77,7 @@ func TestIssue518(t *testing.T) {
 }
 
 func TestIssue518AnonymousSecurityAlternativeDoesNotEmitScopes(t *testing.T) {
-	_, testFile, _, ok := runtime.Caller(0)
-	assert.True(t, ok)
-
-	generatedPath := filepath.Join(filepath.Dir(testFile), "middleware.gen.go")
-	generated, err := os.ReadFile(generatedPath)
+	generated, err := os.ReadFile("middleware.gen.go")
 	require.NoError(t, err)
 	assert.False(t, strings.Contains(string(generated), "SetUserValue"))
 }

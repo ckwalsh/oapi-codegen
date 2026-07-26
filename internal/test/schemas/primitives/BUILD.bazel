@@ -1,0 +1,19 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "primitives",
+    srcs = [
+        "doc.go",
+        "primitives.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/primitives",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//types"],
+)
+
+go_test(
+    name = "primitives_test",
+    srcs = ["primitives_test.go"],
+    embed = [":primitives"],
+    deps = ["@com_github_stretchr_testify//require"],
+)

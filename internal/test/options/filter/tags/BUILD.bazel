@@ -1,0 +1,19 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "tags",
+    srcs = ["server.gen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/filter/tags",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_labstack_echo_v4//:echo"],
+)
+
+go_test(
+    name = "tags_test",
+    srcs = ["server_test.go"],
+    embed = [":tags"],
+    deps = [
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "server",
+    srcs = [
+        "server.go",
+        "setup.go",
+        "store.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/fiber/server",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//examples/petstore-expanded/fiber/api",
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_oapi_codegen_fiber_middleware//:fiber-middleware",
+    ],
+)

@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "compatibility",
+    srcs = [
+        "compatibility.gen.go",
+        "doc.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/compatibility",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_getkin_kin_openapi//openapi3"],
+)
+
+go_test(
+    name = "compatibility_test",
+    srcs = ["compatibility_test.go"],
+    embed = [":compatibility"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

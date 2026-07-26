@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "child",
+    srcs = ["child.gen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/multipackage/parent_child/api/child",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/multipackage/parent_child/api/parent",
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_gin_gonic_gin//:gin",
+    ],
+)

@@ -1,0 +1,8 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "ecdsafile",
+    srcs = ["ecdsafile.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/pkg/ecdsafile",
+    visibility = ["//visibility:public"],
+)

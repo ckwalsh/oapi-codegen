@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "iris",
+    srcs = [
+        "doc.go",
+        "middleware.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/middleware/iris",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_kataras_iris_v12//:iris"],
+)
+
+go_test(
+    name = "iris_test",
+    srcs = ["main_test.go"],
+    embed = [":iris"],
+    deps = [
+        "@com_github_kataras_iris_v12//:iris",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

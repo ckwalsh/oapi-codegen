@@ -1,0 +1,25 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "responseheaders",
+    srcs = [
+        "doc.go",
+        "headers.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/clients/responseheaders",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_oapi_codegen_nullable//:nullable",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)
+
+go_test(
+    name = "responseheaders_test",
+    srcs = ["headers_test.go"],
+    embed = [":responseheaders"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

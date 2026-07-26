@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "iris",
+    srcs = ["server.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/roundtrip/iris",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/parameters/roundtrip/iris/gen",
+        "@com_github_kataras_iris_v12//:iris",
+    ],
+)

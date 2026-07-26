@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "text_non_string",
+    srcs = [
+        "doc.go",
+        "text_non_string.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/bodies/content_types/text_non_string",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "text_non_string_test",
+    srcs = ["text_non_string_test.go"],
+    embed = [":text_non_string"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

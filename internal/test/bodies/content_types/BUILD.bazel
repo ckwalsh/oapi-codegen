@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "content_types",
+    srcs = [
+        "content_types.gen.go",
+        "doc.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/bodies/content_types",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_oapi_codegen_runtime//:runtime",
+        "@com_github_oapi_codegen_runtime//types",
+        "@in_yaml_go_yaml_v3//:yaml",
+    ],
+)
+
+go_test(
+    name = "content_types_test",
+    srcs = ["content_types_test.go"],
+    embed = [":content_types"],
+    deps = [
+        "@com_github_google_uuid//:uuid",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

@@ -1,0 +1,24 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hoisting",
+    srcs = [
+        "doc.go",
+        "hoisting_explicit.gen.go",
+        "hoisting_implicit.gen.go",
+        "hoisting_schemas.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/aggregates/hoisting",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)
+
+go_test(
+    name = "hoisting_test",
+    srcs = ["hoisting_test.go"],
+    embed = [":hoisting"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

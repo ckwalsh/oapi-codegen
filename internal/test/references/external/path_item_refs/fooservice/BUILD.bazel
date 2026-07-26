@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "fooservice",
+    srcs = [
+        "doc.go",
+        "fooservice.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/external/path_item_refs/fooservice",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/external/path_item_refs/bionicle",
+        "//internal/test/references/external/path_item_refs/common",
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_gorilla_mux//:mux",
+        "@com_github_oapi_codegen_runtime//:runtime",
+    ],
+)
+
+go_test(
+    name = "fooservice_test",
+    srcs = ["fooservice_test.go"],
+    embed = [":fooservice"],
+    deps = [
+        "//internal/test/references/external/path_item_refs/bionicle",
+        "@com_github_stretchr_testify//require",
+    ],
+)

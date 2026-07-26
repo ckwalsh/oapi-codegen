@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "multi_json",
+    srcs = [
+        "doc.go",
+        "multi_json.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/bodies/content_types/multi_json",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@com_github_getkin_kin_openapi//openapi3",
+        "@com_github_gin_gonic_gin//:gin",
+    ],
+)
+
+go_test(
+    name = "multi_json_test",
+    srcs = [
+        "json_suffix_test.go",
+        "multi_json_test.go",
+    ],
+    deps = [
+        ":multi_json",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_stretchr_testify//assert",
+    ],
+)

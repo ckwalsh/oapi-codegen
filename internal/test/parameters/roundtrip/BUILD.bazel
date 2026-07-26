@@ -1,0 +1,51 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "roundtrip",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/roundtrip",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "roundtrip_test",
+    srcs = [
+        "param_roundtrip_test.go",
+        "stdhttp_escaping_test.go",
+        "wire_format_test.go",
+    ],
+    deps = [
+        "//internal/test/parameters/roundtrip/chi",
+        "//internal/test/parameters/roundtrip/chi/gen",
+        "//internal/test/parameters/roundtrip/client/gen",
+        "//internal/test/parameters/roundtrip/echo",
+        "//internal/test/parameters/roundtrip/echo/gen",
+        "//internal/test/parameters/roundtrip/echov5",
+        "//internal/test/parameters/roundtrip/echov5/gen",
+        "//internal/test/parameters/roundtrip/fiber",
+        "//internal/test/parameters/roundtrip/fiber/gen",
+        "//internal/test/parameters/roundtrip/fiberv3",
+        "//internal/test/parameters/roundtrip/fiberv3/gen",
+        "//internal/test/parameters/roundtrip/gin",
+        "//internal/test/parameters/roundtrip/gin/gen",
+        "//internal/test/parameters/roundtrip/gorilla",
+        "//internal/test/parameters/roundtrip/gorilla/gen",
+        "//internal/test/parameters/roundtrip/iris",
+        "//internal/test/parameters/roundtrip/iris/gen",
+        "//internal/test/parameters/roundtrip/stdhttp",
+        "//internal/test/parameters/roundtrip/stdhttp/gen",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_go_chi_chi_v5//:chi",
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_gofiber_fiber_v2//middleware/adaptor",
+        "@com_github_gofiber_fiber_v3//:fiber",
+        "@com_github_gofiber_fiber_v3//middleware/adaptor",
+        "@com_github_gorilla_mux//:mux",
+        "@com_github_kataras_iris_v12//:iris",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_labstack_echo_v5//:echo",
+        "@com_github_oapi_codegen_testutil//:testutil",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

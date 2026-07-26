@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "external_json_ref",
+    srcs = [
+        "doc.go",
+        "external_json_ref.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/overlays/external_json_ref",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/references/overlays/external_json_ref/packageA",
+        "@com_github_getkin_kin_openapi//openapi3",
+    ],
+)
+
+go_test(
+    name = "external_json_ref_test",
+    srcs = ["overlay_test.go"],
+    embed = [":external_json_ref"],
+    deps = ["@com_github_stretchr_testify//require"],
+)

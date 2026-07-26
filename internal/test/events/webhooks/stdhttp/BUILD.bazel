@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "stdhttp",
+    srcs = [
+        "doc.go",
+        "webhooks.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/events/webhooks/stdhttp",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "stdhttp_test",
+    srcs = ["webhooks_test.go"],
+    embed = [":stdhttp"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

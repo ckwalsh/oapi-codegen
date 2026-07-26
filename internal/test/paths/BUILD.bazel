@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "paths",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/paths",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "paths_test",
+    srcs = ["colon_paths_test.go"],
+    embed = [":paths"],
+    deps = [
+        "//internal/test/paths/echo",
+        "//internal/test/paths/fiber",
+        "//internal/test/paths/fiberv3",
+        "//internal/test/paths/gin",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_gofiber_fiber_v3//:fiber",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

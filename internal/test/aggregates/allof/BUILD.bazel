@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "allof",
+    srcs = [
+        "allof.gen.go",
+        "allof_new_merge.gen.go",
+        "allof_old_merge.gen.go",
+        "doc.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/aggregates/allof",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)
+
+go_test(
+    name = "allof_test",
+    srcs = ["allof_test.go"],
+    embed = [":allof"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

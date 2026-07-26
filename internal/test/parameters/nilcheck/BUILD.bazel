@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "nilcheck",
+    srcs = [
+        "doc.go",
+        "nilcheck.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/nilcheck",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_oapi_codegen_runtime//:runtime"],
+)
+
+go_test(
+    name = "nilcheck_test",
+    srcs = ["nilcheck_test.go"],
+    embed = [":nilcheck"],
+    deps = [
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)

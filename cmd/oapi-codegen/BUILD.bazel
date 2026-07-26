@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "oapi-codegen_lib",
+    srcs = ["oapi-codegen.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//pkg/codegen",
+        "//pkg/util",
+        "@in_yaml_go_yaml_v3//:yaml",
+    ],
+)
+
+go_binary(
+    name = "oapi-codegen",
+    embed = [":oapi-codegen_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "oapi-codegen_test",
+    srcs = ["oapi-codegen_test.go"],
+    data = ["//examples/petstore-expanded:petstore-expanded.yaml"],
+    embed = [":oapi-codegen_lib"],
+    deps = ["//pkg/util"],
+)

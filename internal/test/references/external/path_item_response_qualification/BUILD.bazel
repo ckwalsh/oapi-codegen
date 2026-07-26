@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "path_item_response_qualification",
+    srcs = ["doc.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/references/external/path_item_response_qualification",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "path_item_response_qualification_test",
+    srcs = ["issue_test.go"],
+    embed = [":path_item_response_qualification"],
+    deps = [
+        "//internal/test/references/external/path_item_response_qualification/gen/spec_base",
+        "//internal/test/references/external/path_item_response_qualification/gen/spec_ext",
+    ],
+)

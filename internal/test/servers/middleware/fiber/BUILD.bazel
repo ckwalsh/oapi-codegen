@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "fiber",
+    srcs = [
+        "doc.go",
+        "middleware.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/servers/middleware/fiber",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_gofiber_fiber_v2//:fiber"],
+)
+
+go_test(
+    name = "fiber_test",
+    srcs = ["main_test.go"],
+    data = [":middleware.gen.go"],
+    embed = [":fiber"],
+    deps = [
+        "@com_github_gofiber_fiber_v2//:fiber",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)
+
+exports_files(["middleware.gen.go"])

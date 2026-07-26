@@ -1,0 +1,22 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "objects",
+    srcs = [
+        "doc.go",
+        "objects.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/schemas/objects",
+    visibility = ["//:__subpackages__"],
+    deps = ["@com_github_go_chi_chi_v5//:chi"],
+)
+
+go_test(
+    name = "objects_test",
+    srcs = [
+        "components_test.go",
+        "objects_test.go",
+    ],
+    embed = [":objects"],
+    deps = ["@com_github_stretchr_testify//assert"],
+)

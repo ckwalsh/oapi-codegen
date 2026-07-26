@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "fiberv3",
+    srcs = ["server.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/parameters/roundtrip/fiberv3",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//internal/test/parameters/roundtrip/fiberv3/gen",
+        "@com_github_gofiber_fiber_v3//:fiber",
+    ],
+)

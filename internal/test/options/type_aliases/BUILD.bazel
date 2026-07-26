@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "type_aliases",
+    srcs = [
+        "doc.go",
+        "type_aliases.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/type_aliases",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "type_aliases_test",
+    srcs = ["type_aliases_test.go"],
+    embed = [":type_aliases"],
+)

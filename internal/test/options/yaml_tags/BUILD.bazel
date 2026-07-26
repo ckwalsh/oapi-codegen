@@ -1,0 +1,17 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "yaml_tags",
+    srcs = [
+        "doc.go",
+        "yaml_tags.gen.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/internal/test/options/yaml_tags",
+    visibility = ["//:__subpackages__"],
+)
+
+go_test(
+    name = "yaml_tags_test",
+    srcs = ["yaml_tags_test.go"],
+    embed = [":yaml_tags"],
+)

@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "nethttp-compatible_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/nethttp-compatible",
+    visibility = ["//visibility:private"],
+    deps = ["//examples/minimal-server/gorillamux/api"],
+)
+
+go_binary(
+    name = "nethttp-compatible",
+    embed = [":nethttp-compatible_lib"],
+    visibility = ["//visibility:public"],
+)

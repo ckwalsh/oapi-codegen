@@ -1,0 +1,36 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "server",
+    srcs = [
+        "fake_jws.go",
+        "jwt_authenticator.go",
+        "server.go",
+    ],
+    importpath = "github.com/oapi-codegen/oapi-codegen/v2/examples/authenticated-api/echo/server",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//examples/authenticated-api/echo/api",
+        "//pkg/ecdsafile",
+        "@com_github_getkin_kin_openapi//openapi3filter",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_lestrrat_go_jwx_v3//jwa",
+        "@com_github_lestrrat_go_jwx_v3//jwk",
+        "@com_github_lestrrat_go_jwx_v3//jws",
+        "@com_github_lestrrat_go_jwx_v3//jwt",
+        "@com_github_oapi_codegen_echo_middleware//:echo-middleware",
+    ],
+)
+
+go_test(
+    name = "server_test",
+    srcs = ["server_test.go"],
+    embed = [":server"],
+    deps = [
+        "//examples/authenticated-api/echo/api",
+        "@com_github_labstack_echo_v4//:echo",
+        "@com_github_oapi_codegen_testutil//:testutil",
+        "@com_github_stretchr_testify//assert",
+        "@com_github_stretchr_testify//require",
+    ],
+)
