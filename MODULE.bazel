@@ -15,9 +15,10 @@ go_sdk.from_file(go_work = "//:go.work")
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.from_file(go_work = "//:go.work")
-go_deps.gazelle_override(
+use_repo(go_deps, "com_github_getkin_kin_openapi", "com_github_gin_gonic_gin", "com_github_go_chi_chi_v5", "com_github_gofiber_fiber_v2", "com_github_gofiber_fiber_v3", "com_github_google_uuid", "com_github_gorilla_mux", "com_github_kataras_iris_v12", "com_github_labstack_echo_v4", "com_github_labstack_echo_v5", "com_github_lestrrat_go_jwx_v3", "com_github_oapi_codegen_echo_middleware", "com_github_oapi_codegen_echo_v5_middleware", "com_github_oapi_codegen_fiber_middleware", "com_github_oapi_codegen_fiber_v3_middleware", "com_github_oapi_codegen_gin_middleware", "com_github_oapi_codegen_iris_middleware", "com_github_oapi_codegen_nethttp_middleware", "com_github_oapi_codegen_nullable", "com_github_oapi_codegen_runtime", "com_github_oapi_codegen_testutil", "com_github_speakeasy_api_openapi", "com_github_stretchr_testify", "in_gopkg_yaml_v3", "in_yaml_go_yaml_v3", "org_golang_x_mod", "org_golang_x_text", "org_golang_x_time", "org_golang_x_tools")
+
+go_deps_dev = use_extension("@gazelle//:extensions.bzl", "go_deps", dev_dependency = True)
+go_deps_dev.gazelle_override(
     build_file_generation = "clean",
     path = "github.com/lestrrat-go/jwx/v3",
-    dev_dependency = True,
 )
-use_repo(go_deps, "com_github_getkin_kin_openapi", "com_github_gin_gonic_gin", "com_github_go_chi_chi_v5", "com_github_gofiber_fiber_v2", "com_github_gofiber_fiber_v3", "com_github_google_uuid", "com_github_gorilla_mux", "com_github_kataras_iris_v12", "com_github_labstack_echo_v4", "com_github_labstack_echo_v5", "com_github_lestrrat_go_jwx_v3", "com_github_oapi_codegen_echo_middleware", "com_github_oapi_codegen_echo_v5_middleware", "com_github_oapi_codegen_fiber_middleware", "com_github_oapi_codegen_fiber_v3_middleware", "com_github_oapi_codegen_gin_middleware", "com_github_oapi_codegen_iris_middleware", "com_github_oapi_codegen_nethttp_middleware", "com_github_oapi_codegen_nullable", "com_github_oapi_codegen_runtime", "com_github_oapi_codegen_testutil", "com_github_speakeasy_api_openapi", "com_github_stretchr_testify", "in_gopkg_yaml_v3", "in_yaml_go_yaml_v3", "org_golang_x_mod", "org_golang_x_text", "org_golang_x_time", "org_golang_x_tools")
